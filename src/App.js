@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { fetchMovie } from "./Services/api";
+import { Route, Routes } from "react-router-dom";
+import SharedLayout from "./Components/SharedLayout/SharedLayout";
+import Home from "./Pages/Home";
+import Movies from "./Pages/Movies";
+import MovieDetails from "./Components/MovieDetails/MovieDetails";
+import Cast from "./Components/Cast/Cast";
+import Reviews from "./Components/Reviews/Reviews";
+
+const fetchTrending = async () => {
+	try {
+		const movies = await fetchMovie();
+		console.log(movies);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+fetchTrending();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<SharedLayout />}>
+				<Route index element={<Home />} />
+				<Route path="movies" element={<Movies />} />
+				<Route path="movies/:movieId" elemnt={<MovieDetails />}>
+					<Route path="cast" elemnt={<Cast />}></Route>
+					<Route path="reviews" elemnt={<Reviews />}></Route>
+				</Route>
+			</Route>
+		</Routes>
+	);
 }
 
 export default App;
