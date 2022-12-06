@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { fetchMovie } from "../Services/api";
+import { fetchTrendingMovies } from "../Services/api";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-	const [trending, serTrending] = useState([]);
+	const [trending, setTrending] = useState([]);
 
 	const showTrending = async () => {
 		try {
-			const fetchedMovies = await fetchMovie();
-			console.log(fetchedMovies);
-			serTrending(fetchedMovies);
+			const fetchedMovies = await fetchTrendingMovies();
+			setTrending(fetchedMovies);
 		} catch (error) {
 			console.log(error);
 		}
