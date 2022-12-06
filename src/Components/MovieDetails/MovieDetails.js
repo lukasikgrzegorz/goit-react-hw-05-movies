@@ -1,5 +1,6 @@
+import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Outlet, Link, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../Services/api";
 
 const MovieDetails = () => {
@@ -38,6 +39,11 @@ const MovieDetails = () => {
 							return `${e.name} `;
 						})}
 				</p>
+				<Link to="cast">Cast</Link>
+				<Link to="reviews">Reviews</Link>
+				<Suspense fallback={<div>Loading page...</div>}>
+					<Outlet></Outlet>
+				</Suspense>
 			</>
 		);
 	}

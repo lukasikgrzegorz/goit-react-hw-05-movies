@@ -23,13 +23,13 @@ export const fetchMovieDetails = async (id) => {
 export const fetchMovieCast = async (id) => {
 	const target = `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`;
 	const response = await axios.get(target);
-	return response.data.results;
+	return response.data.cast;
 };
 
 export const fetchMovieReviews = async (id) => {
 	const target = `${BASE_URL}search/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`;
 	const response = await axios.get(target);
-	return response.data.results;
+	return response.data;
 };
 
 const api = {
