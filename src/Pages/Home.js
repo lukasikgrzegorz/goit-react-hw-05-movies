@@ -23,9 +23,7 @@ const Home = () => {
 			{trending.map((movie) => {
 				return (
 					<li key={movie.id}>
-						<Link to={`movies/${movie.id}`}>
-							{movie.media_type === "movie" ? movie.title : movie.name}
-						</Link>
+						<Link to={`movies/${movie.id}`}>{movie.title}</Link>
 					</li>
 				);
 			})}
