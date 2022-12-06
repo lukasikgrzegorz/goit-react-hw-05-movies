@@ -1,10 +1,14 @@
 import React, { Suspense } from "react";
 import { useEffect, useState } from "react";
-import { Outlet, Link, useParams } from "react-router-dom";
+import { Outlet, Link, useParams, useLocation } from "react-router-dom";
 import { fetchMovieDetails } from "../../Services/api";
 
 const MovieDetails = () => {
 	const [movie, setMovie] = useState();
+	const location = useLocation();
+	const backLinkHref = location.state?.from ?? "/movies";
+
+	console.log(location);
 
 	const showMovieDetail = async (id) => {
 		try {
@@ -25,6 +29,7 @@ const MovieDetails = () => {
 	if (movie) {
 		return (
 			<>
+				<Link to={backLinkHref}>Back</Link>
 				{movie.poster_path && (
 					<img src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`}></img>
 				)}

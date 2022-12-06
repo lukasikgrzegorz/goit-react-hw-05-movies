@@ -23,7 +23,9 @@ const Home = () => {
 			{trending.map((movie) => {
 				return (
 					<li key={movie.id}>
-						<Link to={`movies/${movie.id}`}>{movie.title}</Link>
+						<Link to={`movies/${movie.id}`} state={{ from: "/" }}>
+							{movie.title}
+						</Link>
 					</li>
 				);
 			})}
