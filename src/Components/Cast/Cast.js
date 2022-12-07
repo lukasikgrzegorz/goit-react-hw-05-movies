@@ -22,12 +22,14 @@ const Cast = () => {
 				{cast.map((e) => {
 					return (
 						<li key={e.id}>
-							{e.profile_path && (
-								<img
-									src={`https://www.themoviedb.org/t/p/w138_and_h175_face/${e.profile_path}`}
-									alt={e.name}
-								/>
-							)}
+							<img
+								src={
+									e.profile_path
+										? `https://www.themoviedb.org/t/p/w138_and_h175_face/${e.profile_path}`
+										: `https://via.placeholder.com/138x175?text=Theres+no+photo`
+								}
+								alt={e.name}
+							/>
 							<p>{e.name}</p>
 							<p>character: {e.character}</p>
 						</li>
@@ -39,3 +41,4 @@ const Cast = () => {
 };
 
 export default Cast;
+

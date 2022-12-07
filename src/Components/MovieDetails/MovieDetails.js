@@ -26,12 +26,14 @@ const MovieDetails = () => {
 		return (
 			<>
 				<Link to={backLinkHref}>go back</Link>
-				{movie.poster_path && (
-					<img
-						src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`}
-						alt={`${movie.title}`}
-					></img>
-				)}
+				<img
+					src={
+						movie.poster_path
+							? `https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`
+							: `https://via.placeholder.com/220x330?text=Theres+no+photo`
+					}
+					alt={`${movie.title}`}
+				/>
 				<h2>{movie.title}</h2>
 				<span>user score: {Math.round(movie.vote_average * 10)}%</span>
 				<h3>overview</h3>
