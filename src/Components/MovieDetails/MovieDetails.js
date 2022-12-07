@@ -8,12 +8,9 @@ const MovieDetails = () => {
 	const location = useLocation();
 	const backLinkHref = location.state?.from ?? "/movies";
 
-	console.log(location);
-
 	const showMovieDetail = async (id) => {
 		try {
 			const fetchedData = await fetchMovieDetails(id);
-			console.log(fetchedData);
 			setMovie(fetchedData);
 		} catch (error) {
 			console.log(error);
@@ -23,15 +20,17 @@ const MovieDetails = () => {
 
 	useEffect(() => {
 		showMovieDetail(movieId);
-		console.log(movieId);
-	}, []);
+	}, [movieId]);
 
 	if (movie) {
 		return (
 			<>
-				<Link to={backLinkHref}>Back</Link>
+				<Link to={backLinkHref}>go back</Link>
 				{movie.poster_path && (
-					<img src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`}></img>
+					<img
+						src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`}
+						alt={`${movie.title}`}
+					></img>
 				)}
 				<h2>{movie.title}</h2>
 				<span>user score: {Math.round(movie.vote_average * 10)}%</span>
@@ -46,7 +45,7 @@ const MovieDetails = () => {
 				</p>
 				<Link to="cast">Cast</Link>
 				<Link to="reviews">Reviews</Link>
-				<Suspense fallback={<div>Loading page...</div>}>
+				<Suspense fallback={<div>Loading...</div>}>
 					<Outlet></Outlet>
 				</Suspense>
 			</>

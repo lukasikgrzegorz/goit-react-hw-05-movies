@@ -7,16 +7,14 @@ const Reviews = () => {
 
 	const fetchThisMovieReviews = async (id) => {
 		const fetchedData = await fetchMovieReviews(id);
-		console.log(fetchedData);
 		setReviews(fetchedData);
 	};
 
 	const { movieId } = useParams();
-	console.log(movieId);
 
 	useEffect(() => {
 		fetchThisMovieReviews(movieId);
-	}, []);
+	}, [movieId]);
 
 	if (reviews) {
 		return (

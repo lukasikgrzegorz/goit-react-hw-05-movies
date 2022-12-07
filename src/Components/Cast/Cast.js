@@ -8,14 +8,13 @@ const Cast = () => {
 	const fetchThisMovieCast = async (id) => {
 		const fetchedData = await fetchMovieCast(id);
 		setCast(fetchedData);
-		console.log(fetchedData);
 	};
 
 	const { movieId } = useParams();
 
 	useEffect(() => {
 		fetchThisMovieCast(movieId);
-	}, []);
+	}, [movieId]);
 
 	if (cast) {
 		return (
@@ -24,7 +23,10 @@ const Cast = () => {
 					return (
 						<li key={e.id}>
 							{e.profile_path && (
-								<img src={`https://www.themoviedb.org/t/p/w138_and_h175_face/${e.profile_path}`} />
+								<img
+									src={`https://www.themoviedb.org/t/p/w138_and_h175_face/${e.profile_path}`}
+									alt={e.name}
+								/>
 							)}
 							<p>{e.name}</p>
 							<p>character: {e.character}</p>
