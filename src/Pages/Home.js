@@ -19,17 +19,20 @@ const Home = () => {
 	}, []);
 
 	return (
-		<ul>
-			{trending.map((movie) => {
-				return (
-					<li key={movie.id}>
-						<Link to={`movies/${movie.id}`} state={{ from: "/" }}>
-							{movie.title}
-						</Link>
-					</li>
-				);
-			})}
-		</ul>
+		<>
+			<h2>Tranding today</h2>
+			<ul>
+				{trending.map((movie) => {
+					return (
+						<li key={movie.id}>
+							<Link to={`movies/${movie.id}`} state={{ from: "/" }}>
+								{movie.title}
+							</Link>
+						</li>
+					);
+				})}
+			</ul>
+		</>
 	);
 };
 
