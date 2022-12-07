@@ -5,8 +5,9 @@ import { fetchMovieDetails } from "../../Services/api";
 
 const MovieDetails = () => {
 	const [movie, setMovie] = useState();
-	const location = useLocation();
-	const backLinkHref = location.state?.from ?? "/movies";
+	let location = useLocation();
+	const backLinkHref = location.state?.from ?? "/";
+	location = "";
 
 	const showMovieDetail = async (id) => {
 		try {
@@ -20,7 +21,7 @@ const MovieDetails = () => {
 
 	useEffect(() => {
 		showMovieDetail(movieId);
-	}, [movieId]);
+	}, []);
 
 	if (movie) {
 		return (
@@ -45,8 +46,12 @@ const MovieDetails = () => {
 							return `${e.name} `;
 						})}
 				</p>
-				<Link to="cast">Cast</Link>
-				<Link to="reviews">Reviews</Link>
+				<Link to="cast" state={{ from: `${backLinkHref}` }}>
+					Cast
+				</Link>
+				<Link to="reviews" state={{ from: `${backLinkHref}` }}>
+					Reviews
+				</Link>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Outlet></Outlet>
 				</Suspense>

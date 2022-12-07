@@ -14,7 +14,7 @@ const Cast = () => {
 
 	useEffect(() => {
 		fetchThisMovieCast(movieId);
-	}, [movieId]);
+	}, []);
 
 	if (cast) {
 		return (
@@ -41,4 +41,3 @@ const Cast = () => {
 };
 
 export default Cast;
-
