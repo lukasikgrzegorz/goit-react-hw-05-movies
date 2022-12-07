@@ -17,6 +17,7 @@ const MovieDetails = () => {
 			console.log(error);
 		}
 	};
+	
 	const { movieId } = useParams();
 
 	useEffect(() => {
