@@ -16,3 +16,7 @@ code {
   box-sizing: border-box;
   margin: 0;
 }
+
+ul{
+  margin-top: 15px;
+}

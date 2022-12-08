@@ -7,15 +7,19 @@ import { useSearchParams } from "react-router-dom";
 const Movies = () => {
 	const [movies, setMovies] = useState([]);
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [isLoading, setIsLoading] = useState(false);
 
 	const actualQuery = searchParams.get("query");
 
 	const showFetchedMovies = async (query) => {
+		setIsLoading(true);
 		try {
 			const fetchedMovies = await fetchMoviesByQuery(query);
 			setMovies([...fetchedMovies]);
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -29,6 +33,7 @@ const Movies = () => {
 	return (
 		<>
 			<Searchbar onSubmit={(e) => setSearchParams({ query: e })}></Searchbar>
+			{isLoading && <div>Loading...</div>}
 			{movies.length > 0 ? (
 				<ul>
 					{movies.map((movie) => {
@@ -42,7 +47,7 @@ const Movies = () => {
 					})}
 				</ul>
 			) : (
-				actualQuery && <div>Nothing found. Try again.</div>
+				actualQuery && !isLoading && <div>Nothing found. Try again.</div>
 			)}
 		</>
 	);
