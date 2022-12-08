@@ -29,17 +29,21 @@ const Movies = () => {
 	return (
 		<>
 			<Searchbar onSubmit={(e) => setSearchParams({ query: e })}></Searchbar>
-			<ul>
-				{movies.map((movie) => {
-					return (
-						<li key={movie.id}>
-							<Link to={`${movie.id}`} state={{ from: `/movies/?${searchParams}` }}>
-								{movie.title}
-							</Link>
-						</li>
-					);
-				})}
-			</ul>
+			{movies.length > 0 ? (
+				<ul>
+					{movies.map((movie) => {
+						return (
+							<li key={movie.id}>
+								<Link to={`${movie.id}`} state={{ from: `/movies/?${searchParams}` }}>
+									{movie.title}
+								</Link>
+							</li>
+						);
+					})}
+				</ul>
+			) : (
+				actualQuery && <div>Nothing found. Try again.</div>
+			)}
 		</>
 	);
 };
