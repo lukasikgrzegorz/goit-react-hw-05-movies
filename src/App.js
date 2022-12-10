@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 
@@ -19,7 +19,7 @@ function App() {
 					<Route path="cast" element={<Cast />}></Route>
 					<Route path="reviews" element={<Reviews />}></Route>
 				</Route>
-				<Route path="*" element={<Home />} />
+				<Route path="*" element={<Navigate to="/" replace />} />
 			</Route>
 		</Routes>
 	);
